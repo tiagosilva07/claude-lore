@@ -1,8 +1,11 @@
 # claude-lore
 
-A persistent, git-versioned knowledge base for Claude Code projects — plus coding discipline guidelines.
+A persistent, git-versioned knowledge base for Claude Code projects — plus coding discipline guidelines inspired by [Andrej Karpathy](https://x.com/karpathy/status/2015883857489522876).
 
 Knowledge from your conversations doesn't disappear when the context window closes. `claude-lore` captures decisions, bugs, patterns, and lessons into a structured wiki that grows with your project.
+
+> *"LLMs are exceptionally good at looping until they meet specific goals... Don't tell it what to do, give it success criteria and watch it go."*
+> — Andrej Karpathy
 
 ---
 
@@ -117,7 +120,9 @@ Copy the skill files to your Claude commands directory:
 
 ## Philosophy
 
-Claude Code's context window is ephemeral. Every new session starts cold — Claude re-derives everything from the codebase and conversation history. `claude-lore` gives Claude a persistent layer of *why*: why the architecture is shaped this way, why this library was chosen, why this approach was rejected.
+The coding guidelines in this plugin are directly inspired by [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876) on LLM coding pitfalls — models that make silent assumptions, overcomplicate code, and touch things they shouldn't. The four principles (Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution) address those pitfalls directly.
+
+The wiki and memory system are a separate idea: Claude Code's context window is ephemeral. Every new session starts cold — Claude re-derives everything from the codebase and conversation history. `claude-lore` gives Claude a persistent layer of *why*: why the architecture is shaped this way, why this library was chosen, why this approach was rejected.
 
 The goal is that a senior engineer opening this project for the first time — or Claude starting a new session — can read the lore wiki and understand not just *what* the code does, but *why* it was built this way.
 
