@@ -15,27 +15,35 @@
 
 ---
 
-Andrej Karpathy published a pattern for building persistent, compounding knowledge bases: instead of searching raw sources every time, the LLM maintains a cross-linked wiki that stays current.
+Andrej Karpathy published a pattern ([gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)) for building persistent, compounding knowledge bases: instead of re-synthesizing raw sources on every query, an LLM incrementally builds and maintains a cross-linked wiki of markdown files. Knowledge compounds over time rather than evaporating after each session.
 
-Great pattern. But applying it requires discipline — organizing captures, maintaining structure, keeping it updated.
+> *"The tedious part...is the bookkeeping."* LLMs handle cross-references, consistency, and updates at near-zero cost, while humans focus on curation and direction.
 
-`claude-lore` makes Karpathy's pattern practical for Claude Code projects.
+Great pattern. But applying it to a coding workflow requires tooling — organizing captures, maintaining structure, keeping it updated across sessions.
+
+`claude-lore` is that tooling, built for Claude Code projects.
 
 **The pattern (Karpathy's idea):**
-- Ingest sources → LLM updates wiki pages
-- Query wiki → LLM synthesizes answers
-- Lint regularly → keep it healthy
 
-**The tooling (claude-lore):**
-- `/lore-init` — scaffold the wiki for your project in one command
-- `/lore-capture` — save decisions, bugs, patterns to an inbox during coding
-- `/lore-ingest` — compile captures into cross-linked wiki pages
+| Operation | What it does |
+|-----------|-------------|
+| **Ingest** | One source triggers updates across multiple wiki pages |
+| **Query** | Read index → find relevant pages → synthesize answers |
+| **Lint** | Periodic health-checks: contradictions, stale claims, orphan pages |
+
+**The implementation (claude-lore):**
+
+| Command | Maps to |
+|---------|---------|
+| `/lore-init` | Scaffold the wiki structure and schema (`CLAUDE.md`) |
+| `/lore-capture` | Ingest — save decisions, bugs, patterns to the inbox during coding |
+| `/lore-ingest` | Compile captures into cross-linked wiki pages, commit to git |
 
 **What you get:**
 - Private wiki (outside your repo)
-- Git-versioned knowledge base
+- Git-versioned knowledge base that compounds over time
 - Easy-to-use Claude Code plugin
-- Ready-to-use structure with auto memory and coding guidelines
+- Auto memory and coding discipline guidelines included
 
 Karpathy showed the idea works. `claude-lore` makes it easy to actually do it.
 
@@ -183,9 +191,11 @@ Four principles that reduce common LLM coding mistakes:
 
 ## Philosophy
 
-The coding guidelines are directly inspired by [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876) on LLM coding pitfalls — models that make silent assumptions, overcomplicate code, and touch things they shouldn't. The four principles address those pitfalls directly.
+The wiki system implements [Karpathy's persistent wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) — raw sources (conversations) feed an LLM that maintains a cross-linked wiki, compounding knowledge over time instead of re-deriving it from scratch each session.
 
-The wiki and memory system are a separate idea: Claude Code's context window is ephemeral. Every new session starts cold. `claude-lore` gives Claude a persistent layer of *why* — why the architecture is shaped this way, why this library was chosen, why this approach was rejected.
+The coding guidelines are inspired by [Karpathy's observations on LLM coding pitfalls](https://x.com/karpathy/status/2015883857489522876) — models that make silent assumptions, overcomplicate code, and touch things they shouldn't. The four principles address those pitfalls directly.
+
+Claude Code's context window is ephemeral. Every new session starts cold. `claude-lore` gives Claude a persistent layer of *why* — why the architecture is shaped this way, why this library was chosen, why this approach was rejected.
 
 The goal: a senior engineer opening this project for the first time — or Claude starting a new session — reads the lore wiki and understands not just *what* the code does, but *why* it was built this way.
 
