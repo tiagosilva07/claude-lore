@@ -15,10 +15,34 @@
 
 ---
 
+Andrej Karpathy published a pattern for building persistent, compounding knowledge bases: instead of searching raw sources every time, the LLM maintains a cross-linked wiki that stays current.
+
+Great pattern. But applying it requires discipline — organizing captures, maintaining structure, keeping it updated.
+
+`claude-lore` makes Karpathy's pattern practical for Claude Code projects.
+
+**The pattern (Karpathy's idea):**
+- Ingest sources → LLM updates wiki pages
+- Query wiki → LLM synthesizes answers
+- Lint regularly → keep it healthy
+
+**The tooling (claude-lore):**
+- `/lore-init` — scaffold the wiki for your project in one command
+- `/lore-capture` — save decisions, bugs, patterns to an inbox during coding
+- `/lore-ingest` — compile captures into cross-linked wiki pages
+
+**What you get:**
+- Private wiki (outside your repo)
+- Git-versioned knowledge base
+- Easy-to-use Claude Code plugin
+- Ready-to-use structure with auto memory and coding guidelines
+
+Karpathy showed the idea works. `claude-lore` makes it easy to actually do it.
+
+---
+
 > *"LLMs are exceptionally good at looping until they meet specific goals... Don't tell it what to do, give it success criteria and watch it go."*
 > — Andrej Karpathy
-
-Knowledge from your conversations doesn't disappear when the context window closes. `claude-lore` captures decisions, bugs, patterns, and lessons into a structured wiki that grows with your project.
 
 ---
 
