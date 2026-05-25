@@ -1,0 +1,21 @@
+{
+  "name": "lore",
+  "id": "claude-lore",
+  "owner": {
+    "name": "claude-lore"
+  },
+  "metadata": {
+    "description": "Persistent, git-versioned knowledge base that grows from Claude Code conversations — plus coding discipline guidelines inspired by Karpathy.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "claude-lore",
+      "source": "./",
+      "description": "Wiki capture/ingest pipeline, auto memory, and coding guidelines (Think Before Coding, Goal-Driven Execution, Simplicity First, Surgical Changes).",
+      "version": "1.0.0",
+      "keywords": ["wiki", "knowledge", "memory", "guidelines", "karpathy"],
+      "category": "workflow"
+    }
+  ]
+}
